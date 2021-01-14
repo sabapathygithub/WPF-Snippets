@@ -1,0 +1,59 @@
+﻿<Window x:Class="ContextMenuTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ContextMenuTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+	<Window.Resources>
+		<CollectionViewSource x:Key="MyDataViewSource" Source="{Binding SearchableItems}"/>
+		
+		<local:ColorToBrushConverter x:Key="BrushConverter"/>
+		<local:IconConverter x:Key="iconConverter"/>
+		<Style x:Key="styleDynamicMenu" TargetType="MenuItem">
+			<Setter Property="Background" Value="{Binding BackgroundColor, Converter={StaticResource BrushConverter}}"/>
+			<Setter Property="Foreground" Value="{Binding TextColor,Converter={StaticResource BrushConverter}}"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="Icon" Value="{Binding ImageUri,Converter={StaticResource iconConverter}}"/>
+		</Style>
+
+		<Style x:Key="styleStaticMenu" TargetType="MenuItem">
+			<Setter Property="Background" Value="Red"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+		<local:MenuItemStyleSelector x:Key="styleSelector" DynamicMenuStyle="{StaticResource styleDynamicMenu}" StaticMenuStyle="{StaticResource styleStaticMenu}"/>
+	</Window.Resources>
+	<Grid Background="Transparent" x:Name="ContentRoot">
+		<Grid.ContextMenu>
+			<ContextMenu ItemContainerStyleSelector="{StaticResource styleSelector}">
+				<ContextMenu.ItemsSource>
+					<CompositeCollection>
+						<MenuItem Header="Search"/>
+						<MenuItem Header="Static Item1"/>
+						<MenuItem Header="Static Item2"/>
+						<Separator/>
+						<CollectionContainer Collection="{Binding Source={StaticResource MyDataViewSource}}"/>
+						<MenuItem Header="Exit"/>
+					</CompositeCollection>
+				</ContextMenu.ItemsSource>
+				<ContextMenu.ItemTemplate>
+					<HierarchicalDataTemplate DataType="{x:Type local:MenuItemWrapper}" ItemsSource="{Binding Children}">
+						<HierarchicalDataTemplate.ItemContainerStyle>
+							<Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource styleDynamicMenu}">
+							</Style>
+						</HierarchicalDataTemplate.ItemContainerStyle>
+						<TextBlock Text="{Binding Label}"/>
+					</HierarchicalDataTemplate>
+				</ContextMenu.ItemTemplate>
+				<!--<ContextMenu.ItemContainerStyle>
+					<Style TargetType="{x:Type MenuItem}">
+						<Setter Property="Foreground" Value="White"/>
+						<Setter Property="Background" Value="Red"/>
+					</Style>
+				</ContextMenu.ItemContainerStyle>-->
+			</ContextMenu>
+		</Grid.ContextMenu>
+	</Grid>
+</Window>
