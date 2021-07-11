@@ -64,7 +64,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controls\NumericUpDown.cs" />
-    <Compile Include="Controls\TabControlEx.cs" />
+    <Compile Include="Controls\TabControlExtended.cs" />
     <Compile Include="Controls\WatermarkTextbox.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
