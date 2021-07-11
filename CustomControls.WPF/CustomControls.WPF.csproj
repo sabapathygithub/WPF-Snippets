@@ -63,6 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\CustomToolWindow.cs" />
+    <Compile Include="Controls\CustomWindow.cs" />
+    <Compile Include="Controls\MultiSelectionBox.cs" />
     <Compile Include="Controls\NumericUpDown.cs" />
     <Compile Include="Controls\TabControlExtended.cs" />
     <Compile Include="Controls\WatermarkTextbox.cs" />
@@ -76,6 +79,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
