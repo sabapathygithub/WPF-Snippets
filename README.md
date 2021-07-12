@@ -1,2 +1,2 @@
-# WPF_Snippets
+# WPF Code Snippets
  
