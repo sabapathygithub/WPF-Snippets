@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="BookControlApp.BookControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookControlApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="ContentGrid">
+            
+        </Grid>
+        <Border BorderThickness="0 1 0 0" Padding="5" BorderBrush="DeepSkyBlue" x:Name="NavigationGrid" Grid.Row="1">
+            <local:NavigationControl HorizontalAlignment="Center" x:Name="navigationCtrl"/>
+        </Border>
+    </Grid>
+</UserControl>
